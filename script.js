@@ -1,7 +1,22 @@
 const container = document.querySelector(".container");
-
-for (let i = 0; i < 16 * 16; i++) {
+function getNumberOfSquares() {
+    let no = prompt("Enter the number of squares on each side (max 100):");
+    while (no < 1 || no > 100) {
+        no = prompt("Please enter a valid number between 1 and 100:");
+    }
+    return no;
+}   
+const no = getNumberOfSquares();
+for (let i = 0; i < no * no; i++) {
     const square = document.createElement("div");
-    square.classList.add("grid-square"); // Add the "grid-square" class to the div
-    container.appendChild(square); // Append the div to the container
+    square.classList.add("grid-square");
+
+    square.style.width = `${100 / no}%`;
+    square.style.height = `${100 / no}%`;
+
+    square.addEventListener("mouseover", () => {
+        square.style.backgroundColor = "tomato";
+    });
+
+    container.appendChild(square);
 }
